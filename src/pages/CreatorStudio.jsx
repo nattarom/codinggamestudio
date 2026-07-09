@@ -61,6 +61,38 @@ export default function CreatorStudio({ session }) {
     setLoading(false)
   }
 
+  const loadReactTemplate = () => {
+    setCode(`<!DOCTYPE html>
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #1e293b; color: white; padding: 20px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function App() {
+      const [count, setCount] = React.useState(0);
+      return (
+        <div>
+          <h1>My React Game</h1>
+          <p>Score: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Click Me</button>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>`)
+  }
+
   return (
     <div className="container animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: 'calc(100vh - 6rem)' }}>
       <div className="glass-panel flex justify-between items-center" style={{ padding: '1rem' }}>
@@ -77,7 +109,12 @@ export default function CreatorStudio({ session }) {
         {/* Editor Side */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', overflowY: 'auto' }}>
           <div className="glass-panel" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <label className="form-label">Full HTML Code (HTML, CSS, JS)</label>
+            <div className="flex justify-between items-center mb-2">
+              <label className="form-label" style={{ margin: 0 }}>Full HTML Code</label>
+              <button onClick={loadReactTemplate} className="btn btn-secondary" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }}>
+                Load React Template
+              </button>
+            </div>
             <textarea className="form-textarea" style={{ flex: 1, fontFamily: 'monospace', resize: 'none' }} value={code} onChange={e => setCode(e.target.value)} />
           </div>
         </div>
