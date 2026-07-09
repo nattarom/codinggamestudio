@@ -65,13 +65,7 @@ export default function Register() {
               <input type="text" name="room_number" className="form-input" required placeholder="e.g. 1" onChange={handleChange} />
             </div>
           </div>
-          <div className="form-group">
-            <label className="form-label">Role</label>
-            <select name="role" className="form-select" onChange={handleChange}>
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
-            </select>
-          </div>
+
           <div className="form-group">
             <label className="form-label">Email</label>
             <input type="email" name="email" className="form-input" required onChange={handleChange} />
