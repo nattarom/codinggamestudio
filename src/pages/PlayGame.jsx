@@ -99,12 +99,17 @@ export default function PlayGame({ session, profile }) {
 
   return (
     <div className="container animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: 'calc(100vh - 6rem)' }}>
-      <div className="glass-panel flex justify-between items-center" style={{ padding: '1rem' }}>
-        <div>
+      <div className="glass-panel flex justify-between items-start" style={{ padding: '1rem' }}>
+        <div style={{ flex: 1, paddingRight: '2rem' }}>
           <h1 style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{game.title}</h1>
-          <p style={{ color: 'var(--text-secondary)' }}>By @{game.profiles?.username}</p>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: game.description ? '1rem' : '0' }}>By @{game.profiles?.username}</p>
+          {game.description && (
+            <p style={{ lineHeight: '1.5', whiteSpace: 'pre-wrap', color: 'var(--text-primary)' }}>
+              {game.description}
+            </p>
+          )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2" style={{ flexShrink: 0 }}>
           {(session?.user?.id === game.author_id || profile?.role === 'teacher') && (
             <button onClick={handleDeleteGame} className="btn btn-secondary" style={{ color: 'var(--danger)', padding: '0.5rem 1rem' }}>
               <Trash2 size={18} /> Delete Game

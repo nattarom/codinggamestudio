@@ -99,12 +99,12 @@ export default function CreatorStudio({ session }) {
 
   return (
     <div className="container animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: 'calc(100vh - 6rem)' }}>
-      <div className="glass-panel flex justify-between items-center" style={{ padding: '1rem' }}>
-        <div style={{ flex: 1, display: 'flex', gap: '1rem' }}>
-          <input type="text" className="form-input" placeholder="Game Title" value={title} onChange={e => setTitle(e.target.value)} style={{ maxWidth: '300px', margin: 0 }} />
-          <input type="text" className="form-input" placeholder="Short Description" value={description} onChange={e => setDescription(e.target.value)} style={{ margin: 0 }} />
+      <div className="glass-panel flex justify-between items-start" style={{ padding: '1rem' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginRight: '1rem' }}>
+          <input type="text" className="form-input" placeholder="Game Title" value={title} onChange={e => setTitle(e.target.value)} style={{ margin: 0 }} />
+          <textarea className="form-textarea" placeholder="Game Description (How to play, Story, Controls, etc.)" value={description} onChange={e => setDescription(e.target.value)} style={{ margin: 0, resize: 'vertical', minHeight: '60px' }} />
         </div>
-        <button onClick={handlePublish} className="btn btn-primary" disabled={loading}>
+        <button onClick={handlePublish} className="btn btn-primary" disabled={loading} style={{ flexShrink: 0 }}>
           <Save size={18} /> {loading ? 'Saving...' : 'Publish Game'}
         </button>
       </div>
