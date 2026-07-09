@@ -31,6 +31,10 @@ export default function CreatorStudio({ session }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSrcDoc(code + `
+        <style>
+          html, body { margin: 0; padding: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #222; }
+          canvas { max-width: 100%; max-height: 100vh; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        </style>
         <script>
           window.addEventListener('keydown', function(e) {
             if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {

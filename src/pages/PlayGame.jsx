@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
-import { Heart, MessageSquare, Trash2 } from 'lucide-react'
+import { Heart, MessageSquare, Trash2, Maximize } from 'lucide-react'
 
 export default function PlayGame({ session, profile }) {
   const { id } = useParams()
@@ -23,6 +23,10 @@ export default function PlayGame({ session, profile }) {
     if (data) {
       setGame(data)
       setSrcDoc(data.html_code + `
+        <style>
+          html, body { margin: 0; padding: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #222; }
+          canvas { max-width: 100%; max-height: 100vh; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        </style>
         <script>
           window.addEventListener('keydown', function(e) {
             if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
@@ -85,6 +89,12 @@ export default function PlayGame({ session, profile }) {
     setComments(comments.filter(c => c.id !== commentId))
   }
 
+  const handleFullscreen = () => {
+    const iframe = document.getElementById('game-iframe')
+    if (iframe.requestFullscreen) iframe.requestFullscreen()
+    else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen()
+  }
+
   if (!game) return <div className="container text-center mt-4">Loading...</div>
 
   return (
@@ -108,8 +118,16 @@ export default function PlayGame({ session, profile }) {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         {/* Game Area */}
-        <div className="glass-panel" style={{ padding: 0, overflow: 'hidden', borderRadius: 'var(--border-radius)', height: '70vh', minHeight: '500px' }}>
+        <div className="glass-panel" style={{ padding: 0, overflow: 'hidden', borderRadius: 'var(--border-radius)', height: '70vh', minHeight: '500px', position: 'relative' }}>
+           <button 
+             onClick={handleFullscreen} 
+             style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 10, background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '4px', padding: '0.5rem', cursor: 'pointer' }}
+             title="Fullscreen"
+           >
+             <Maximize size={20} />
+           </button>
            <iframe
+              id="game-iframe"
               srcDoc={srcDoc}
               title="game"
               sandbox="allow-scripts allow-popups allow-modals allow-same-origin"
