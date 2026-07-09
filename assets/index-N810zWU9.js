@@ -43,7 +43,35 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
             }
           }, false);
         <\/script>
-      `)},500);return()=>clearTimeout(e)},[a]),(0,W.jsxs)(`div`,{className:`container animate-fade-in`,style:{display:`flex`,flexDirection:`column`,gap:`1.5rem`,height:`calc(100vh - 6rem)`},children:[(0,W.jsxs)(`div`,{className:`glass-panel flex justify-between items-center`,style:{padding:`1rem`},children:[(0,W.jsxs)(`div`,{style:{flex:1,display:`flex`,gap:`1rem`},children:[(0,W.jsx)(`input`,{type:`text`,className:`form-input`,placeholder:`Game Title`,value:t,onChange:e=>n(e.target.value),style:{maxWidth:`300px`,margin:0}}),(0,W.jsx)(`input`,{type:`text`,className:`form-input`,placeholder:`Short Description`,value:r,onChange:e=>i(e.target.value),style:{margin:0}})]}),(0,W.jsxs)(`button`,{onClick:async()=>{if(!t)return alert(`Title is required`);c(!0);let{error:n}=await Ec.from(`games`).insert([{author_id:e.user.id,title:t,description:r,html_code:a,css_code:``,js_code:``}]);n?alert(n.message):d(`/`),c(!1)},className:`btn btn-primary`,disabled:s,children:[(0,W.jsx)(Uc,{size:18}),` `,s?`Saving...`:`Publish Game`]})]}),(0,W.jsxs)(`div`,{style:{display:`grid`,gridTemplateColumns:`1fr 1fr`,gap:`1.5rem`,flex:1,minHeight:0},children:[(0,W.jsx)(`div`,{style:{display:`flex`,flexDirection:`column`,gap:`1rem`,overflowY:`auto`},children:(0,W.jsxs)(`div`,{className:`glass-panel`,style:{flex:1,display:`flex`,flexDirection:`column`},children:[(0,W.jsx)(`label`,{className:`form-label`,children:`Full HTML Code (HTML, CSS, JS)`}),(0,W.jsx)(`textarea`,{className:`form-textarea`,style:{flex:1,fontFamily:`monospace`,resize:`none`},value:a,onChange:e=>o(e.target.value)})]})}),(0,W.jsxs)(`div`,{className:`glass-panel`,style:{display:`flex`,flexDirection:`column`,overflow:`hidden`},children:[(0,W.jsxs)(`div`,{className:`flex items-center gap-2 mb-4`,style:{color:`var(--text-secondary)`},children:[(0,W.jsx)(Hc,{size:18}),` `,(0,W.jsx)(`span`,{children:`Live Preview`})]}),(0,W.jsx)(`div`,{style:{flex:1,background:`#fff`,borderRadius:`var(--border-radius)`,overflow:`hidden`},children:(0,W.jsx)(`iframe`,{srcDoc:l,title:`output`,sandbox:`allow-scripts allow-popups allow-modals allow-same-origin`,frameBorder:`0`,width:`100%`,height:`100%`})})]})]})]})}function Qc({session:e,profile:t}){let{id:n}=xt(),[r,i]=(0,_.useState)(null),[a,o]=(0,_.useState)([]),[s,c]=(0,_.useState)(0),[l,u]=(0,_.useState)(!1),[d,f]=(0,_.useState)(``),[p,m]=(0,_.useState)(``),h=yt();(0,_.useEffect)(()=>{g(),v()},[n]);let g=async()=>{let{data:e}=await Ec.from(`games`).select(`*, profiles(username)`).eq(`id`,n).single();e&&(i(e),m(e.html_code+`
+      `)},500);return()=>clearTimeout(e)},[a]),(0,W.jsxs)(`div`,{className:`container animate-fade-in`,style:{display:`flex`,flexDirection:`column`,gap:`1.5rem`,height:`calc(100vh - 6rem)`},children:[(0,W.jsxs)(`div`,{className:`glass-panel flex justify-between items-center`,style:{padding:`1rem`},children:[(0,W.jsxs)(`div`,{style:{flex:1,display:`flex`,gap:`1rem`},children:[(0,W.jsx)(`input`,{type:`text`,className:`form-input`,placeholder:`Game Title`,value:t,onChange:e=>n(e.target.value),style:{maxWidth:`300px`,margin:0}}),(0,W.jsx)(`input`,{type:`text`,className:`form-input`,placeholder:`Short Description`,value:r,onChange:e=>i(e.target.value),style:{margin:0}})]}),(0,W.jsxs)(`button`,{onClick:async()=>{if(!t)return alert(`Title is required`);c(!0);let{error:n}=await Ec.from(`games`).insert([{author_id:e.user.id,title:t,description:r,html_code:a,css_code:``,js_code:``}]);n?alert(n.message):d(`/`),c(!1)},className:`btn btn-primary`,disabled:s,children:[(0,W.jsx)(Uc,{size:18}),` `,s?`Saving...`:`Publish Game`]})]}),(0,W.jsxs)(`div`,{style:{display:`grid`,gridTemplateColumns:`1fr 1fr`,gap:`1.5rem`,flex:1,minHeight:0},children:[(0,W.jsx)(`div`,{style:{display:`flex`,flexDirection:`column`,gap:`1rem`,overflowY:`auto`},children:(0,W.jsxs)(`div`,{className:`glass-panel`,style:{flex:1,display:`flex`,flexDirection:`column`},children:[(0,W.jsxs)(`div`,{className:`flex justify-between items-center mb-2`,children:[(0,W.jsx)(`label`,{className:`form-label`,style:{margin:0},children:`Full HTML Code`}),(0,W.jsx)(`button`,{onClick:()=>{o(`<!DOCTYPE html>
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"><\/script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"><\/script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #1e293b; color: white; padding: 20px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function App() {
+      const [count, setCount] = React.useState(0);
+      return (
+        <div>
+          <h1>My React Game</h1>
+          <p>Score: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Click Me</button>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  <\/script>
+</body>
+</html>`)},className:`btn btn-secondary`,style:{padding:`0.25rem 0.5rem`,fontSize:`0.8rem`},children:`Load React Template`})]}),(0,W.jsx)(`textarea`,{className:`form-textarea`,style:{flex:1,fontFamily:`monospace`,resize:`none`},value:a,onChange:e=>o(e.target.value)})]})}),(0,W.jsxs)(`div`,{className:`glass-panel`,style:{display:`flex`,flexDirection:`column`,overflow:`hidden`},children:[(0,W.jsxs)(`div`,{className:`flex items-center gap-2 mb-4`,style:{color:`var(--text-secondary)`},children:[(0,W.jsx)(Hc,{size:18}),` `,(0,W.jsx)(`span`,{children:`Live Preview`})]}),(0,W.jsx)(`div`,{style:{flex:1,background:`#fff`,borderRadius:`var(--border-radius)`,overflow:`hidden`},children:(0,W.jsx)(`iframe`,{srcDoc:l,title:`output`,sandbox:`allow-scripts allow-popups allow-modals allow-same-origin`,frameBorder:`0`,width:`100%`,height:`100%`})})]})]})]})}function Qc({session:e,profile:t}){let{id:n}=xt(),[r,i]=(0,_.useState)(null),[a,o]=(0,_.useState)([]),[s,c]=(0,_.useState)(0),[l,u]=(0,_.useState)(!1),[d,f]=(0,_.useState)(``),[p,m]=(0,_.useState)(``),h=yt();(0,_.useEffect)(()=>{g(),v()},[n]);let g=async()=>{let{data:e}=await Ec.from(`games`).select(`*, profiles(username)`).eq(`id`,n).single();e&&(i(e),m(e.html_code+`
         <script>
           window.addEventListener('keydown', function(e) {
             if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
