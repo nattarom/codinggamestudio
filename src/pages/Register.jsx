@@ -58,11 +58,24 @@ export default function Register() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div className="form-group">
               <label className="form-label">Class / Grade</label>
-              <input type="text" name="class_grade" className="form-input" required placeholder="e.g. Grade 10" onChange={handleChange} />
+              <select name="class_grade" className="form-select" required value={formData.class_grade} onChange={handleChange}>
+                <option value="" disabled>Select Class...</option>
+                <option value="ม.1">ม.1</option>
+                <option value="ม.2">ม.2</option>
+                <option value="ม.3">ม.3</option>
+                <option value="ม.4">ม.4</option>
+                <option value="ม.5">ม.5</option>
+                <option value="ม.6">ม.6</option>
+              </select>
             </div>
             <div className="form-group">
               <label className="form-label">Room Number</label>
-              <input type="text" name="room_number" className="form-input" required placeholder="e.g. 1" onChange={handleChange} />
+              <select name="room_number" className="form-select" required value={formData.room_number} onChange={handleChange}>
+                <option value="" disabled>Select Room...</option>
+                {[...Array(15)].map((_, i) => (
+                  <option key={i+1} value={String(i+1)}>ห้อง {i+1}</option>
+                ))}
+              </select>
             </div>
           </div>
 
